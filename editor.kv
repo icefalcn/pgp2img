@@ -1,0 +1,90 @@
+Root:
+    input_file_path: input_file_path
+    output_file_path: output_file_path
+    decrypt_file_path: decrypt_file_path
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Label:
+                text: 'Encrypt'
+
+            Label:
+                text: 'Decrypt'
+        
+        BoxLayout:
+            BoxLayout:
+                orientation: 'vertical'
+                Button:
+                    text: 'Input'
+                    on_release: root.show_load('in')
+                Label:
+                    id: input_file_path
+                    text: input_file_path.text
+                Button:
+                    text: 'Output'
+                    on_release: root.show_load('out')
+                Label:
+                    id: output_file_path
+                    text: output_file_path.text
+                Button:
+                    text: 'GO!'
+                    on_release: root.encrypt()
+            
+            BoxLayout:
+                orientation: 'vertical'
+                Button:
+                    text: 'Decrypt'
+                    on_release: root.show_load('dec')
+                Label:
+                    id: decrypt_file_path
+                    text: decrypt_file_path.text
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            rootpath: '/home/'
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
+
+<SaveDialog>:
+    text_input: text_input
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+            rootpath: '/home/'
+
+        TextInput:
+            id: text_input
+            size_hint_y: None
+            height: 30
+            multiline: False
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Save"
+                on_release: root.save(filechooser.path, text_input.text)
