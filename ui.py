@@ -5,6 +5,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 
 import os
+import mainUi
 
 
 class LoadDialog(FloatLayout):
@@ -26,6 +27,7 @@ class Root(FloatLayout):
 	input_file_path = ObjectProperty(None)
 	output_file_path = ObjectProperty(None)
 	decrypt_file_path = ObjectProperty(None)
+	text_input = ObjectProperty(None)
 	inorout = 'n'
 
 
@@ -70,9 +72,12 @@ class Root(FloatLayout):
 
 	def encrypt(self):
 		print 'encrypting...'
+		mainUi.encryptFile(self.text_input.text, self.input_file_path.text, self.output_file_path.text)
 
 	def decrypt(self):
 		print 'decrypting...'
+		print self.decrypt_file_path.text
+		mainUi.decryptFile(self.decrypt_file_path.text)
 
 class Editor(App):
 	pass

@@ -2,6 +2,7 @@ Root:
     input_file_path: input_file_path
     output_file_path: output_file_path
     decrypt_file_path: decrypt_file_path
+    text_input: text_input
     BoxLayout:
         orientation: 'vertical'
         BoxLayout:
@@ -28,6 +29,9 @@ Root:
                 Label:
                     id: output_file_path
                     text: output_file_path.text
+                TextInput:
+                    id: text_input
+                    text: 'Enter your destination keybase username'
                 Button:
                     text: 'GO!'
                     on_release: root.encrypt()
@@ -40,6 +44,9 @@ Root:
                 Label:
                     id: decrypt_file_path
                     text: decrypt_file_path.text
+                Button:
+                    text: 'GO!'
+                    on_release: root.decrypt()
 
 <LoadDialog>:
     BoxLayout:
