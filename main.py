@@ -27,6 +27,8 @@ def encryptFile():
 	printBanner()
 	message = os.system("keybase encrypt " + sys.argv[3] + " -i \"" + sys.argv[4] +"\" >> " + str(sys.argv[5]))
 	os.system("echo \"" + sys.argv[4].upper() +"\" >> " + sys.argv[5])
+	if len(sys.argv) == 7:
+		os.system("cp " + sys.argv[5] + " /keybase/private/" + sys.argv[6] + "," + sys.argv[3])
 	print "file successfully encrypted"
 
 def getEncryptedFile(content):
@@ -59,14 +61,14 @@ def decryptMessage(match):
 	print "Encrypted message: " + subprocess.check_output(['keybase', 'pgp', 'decrypt', '-m',pgp])
 
 #user selects option to encrypt a file.
-if len(sys.argv) == 6 and sys.argv[1] == "encrypt" and sys.argv[2] == "-i":
+if (len(sys.argv) == 6 or len(sys.argv) == 7) and sys.argv[1] == "encrypt" and sys.argv[2] == "-i":
 	if os.path.isfile(sys.argv[4]) and os.path.isfile(sys.argv[5]):
 		encryptFile()
 	else:
 		print "the file path does not exist"
 
 #user selects option to encrypt a message.
-elif len(sys.argv) == 6 and sys.argv[1] == "encrypt" and sys.argv[2] == "-m":
+elif (len(sys.argv) == 6 or len(sys.argv) == 7) and sys.argv[1] == "encrypt" and sys.argv[2] == "-m":
 	if os.path.isfile(sys.argv[5]):
 		encryptMessage()
 	else:
