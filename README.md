@@ -1,4 +1,4 @@
-#PGP2IMG
+# PGP2IMG
 ### The easiest way to discreetly protect your files
 
 ![](http://newshour-tc.pbs.org/newshour/wp-content/uploads/2014/04/Niedringhaus-Anja_Afghanistan-2011.jpg)
